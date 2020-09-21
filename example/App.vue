@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--<a
+    <a
       href="https://github.com/kleinrein/vue-month-picker"
       class="github-corner"
     >
@@ -137,7 +137,7 @@
       <br>
       <br>
 
-      <h3>Input</h3>-->
+      <h3>Input</h3>
       <month-picker-input
         :lang="selectedLang"
         :clearable="isClearable"
