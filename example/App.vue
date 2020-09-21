@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a
+    <!--<a
       href="https://github.com/kleinrein/vue-month-picker"
       class="github-corner"
     >
@@ -137,7 +137,7 @@
       <br>
       <br>
 
-      <h3>Input</h3>
+      <h3>Input</h3>-->
       <month-picker-input
         :lang="selectedLang"
         :clearable="isClearable"
@@ -152,15 +152,15 @@
         :input-pre-filled="true"
         @change="showDate"
       />
-    </div>
+    <!--</div>-->
   </div>
 </template>
 
 <script>
-import languages from "@/languages";
+import languages from "../src/languages";
 
-import MonthPicker from "@/MonthPicker.vue";
-import MonthPickerInput from "@/MonthPickerInput.vue";
+import MonthPicker from "../src/MonthPicker.vue";
+import MonthPickerInput from "../src/MonthPickerInput.vue";
 
 export default {
   name: "VueMonthPickerExample",
