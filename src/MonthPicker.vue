@@ -271,7 +271,7 @@ export default {
 }
 
 .month-picker__month {
-  flex-basis: calc(33.333% - 10px);
+  flex-basis: calc(33.333%);
   padding: 0.75em 0.25em;
   cursor: pointer;
   text-align: center;
