@@ -49,7 +49,6 @@
         class="month-picker__month"
         @click="selectMonth(i, true)"
       >
-      <div class="clear-both"></div>
         {{ month }}
       </div>
     </div>
@@ -211,7 +210,9 @@ export default {
   width: 100%;
   font-weight: 600;
   letter-spacing: 1px;
+  margin: 0;
   font-size: 1.2em;
+  padding: 11px;
 }
 
 .month-picker__year input {
@@ -245,7 +246,7 @@ export default {
   background-color: #FFFFFF;
   position: absolute;
   width: 2em;
-  font-size: 1.5em;
+  font-size: 1.2em;
   border-radius: 5px;
   outline: none;
   border: 0;
