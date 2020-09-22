@@ -49,6 +49,7 @@
         class="month-picker__month"
         @click="selectMonth(i, true)"
       >
+      <div class="clear-both"></div>
         {{ month }}
       </div>
     </div>
