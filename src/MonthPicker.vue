@@ -183,10 +183,11 @@ export default {
 
 <style>
 .month-picker__container {
-  width: 400px;
+  width: 360px;
   position: relative;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
+  z-index: 5;
 }
 
 .month-picker__container.year-picker {
@@ -274,7 +275,7 @@ export default {
 
 .month-picker__month {
   flex-basis: calc(33.333%);
-  padding: 0.75em 0.25em;
+  padding: 0.5em 0.15em;
   cursor: pointer;
   text-align: center;
   border: 1px solid rgba(245, 245, 245, .75);

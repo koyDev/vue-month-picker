@@ -103,6 +103,7 @@ export default {
     outline: none;
     border: 1px solid rgba(0,0,0,.15);
     transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    width: inherit;
   }
 
   .month-picker-input:focus {
