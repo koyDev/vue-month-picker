@@ -3,6 +3,7 @@
     v-click-outside="hide"
     class="month-picker-input-container"
   >
+  <i class="far fa-calendar-alt"></i>
     <input
       v-model="selectedDate"
       class="month-picker-input"
@@ -112,5 +113,12 @@ export default {
   .month-picker__container {
     position: absolute;
     top: 3.5em;
+  }
+  i.far.fa-calendar-alt {
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    font-size: 20px;
+    color: #2b59c3;
   }
 </style>
