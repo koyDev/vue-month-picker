@@ -183,7 +183,7 @@ export default {
 
 <style>
 .month-picker__container {
-  width: 360px;
+  width: 330px;
   position: relative;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
@@ -289,7 +289,7 @@ export default {
 }
 
 .month-picker__month.selected {
-  background-color: #55B0F2;
+  background-color: #2b59c3;
   color: #FFFFFF;
   border-radius: 5px;
   box-shadow: inset 0 0 3px #3490d2, 0px 2px 5px rgba(85, 176, 242, 0.2);

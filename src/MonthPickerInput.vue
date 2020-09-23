@@ -6,7 +6,7 @@
   <i class="far fa-calendar-alt"></i>
     <input
       v-model="selectedDate"
-      class="month-picker-input"
+      class="month-picker-input form-control"
       type="text"
       readonly
       @click="showMonthPicker()"
@@ -97,8 +97,7 @@ export default {
   }
 
   .month-picker-input {
-    padding: 0.9em 1.5em;
-    font-size: .85em;
+    font-size: inherit;
     border-radius: 0;
     outline: none;
     border: 0;
