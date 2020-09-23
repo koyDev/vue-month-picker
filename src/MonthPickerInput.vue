@@ -97,13 +97,14 @@ export default {
   }
 
   .month-picker-input {
-    padding: 1em 1.5em;
+    padding: 0.9em 1.5em;
     font-size: .85em;
-    border-radius: 5px;
+    border-radius: 0;
     outline: none;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 0;
     transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
     width: inherit;
+    border-bottom: 1px solid #b1b1b1;
   }
 
   .month-picker-input:focus {
