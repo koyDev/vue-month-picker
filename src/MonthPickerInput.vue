@@ -114,6 +114,7 @@ export default {
   .month-picker__container {
     position: absolute;
     top: 3.5em;
+    right:-40%;
   }
   i.far.fa-calendar-alt {
     position: absolute;

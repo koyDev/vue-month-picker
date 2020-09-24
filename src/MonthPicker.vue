@@ -14,7 +14,7 @@
         type="button"
         @click="changeYear(-1)"
       >
-        &lsaquo;
+        <i class="fas fa-caret-left"></i>
       </button>
       <p
         v-if="!editableYear"
@@ -31,7 +31,7 @@
         type="button"
         @click="changeYear(+1)"
       >
-        &rsaquo;
+        <i class="fas fa-caret-right"></i>
       </button>
     </div>
     <div
@@ -49,7 +49,7 @@
         class="month-picker__month"
         @click="selectMonth(i, true)"
       >
-        {{ month }}
+        <div class="mon-btn">{{ month }}</div>
       </div>
     </div>
   </div>
@@ -183,7 +183,7 @@ export default {
 
 <style>
 .month-picker__container {
-  width: 330px;
+  width: 270px;
   position: relative;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
@@ -193,7 +193,6 @@ export default {
 .month-picker__container.year-picker {
   width: 225px;
 }
-
 .month-picker {
   box-sizing: border-box;
   flex: 1;
@@ -205,15 +204,15 @@ export default {
   font-family: sans-serif;
   border-radius: 5px;
   overflow: hidden;
+  padding:0px 30px 5px;
 }
 
 .month-picker__year p {
   width: 100%;
   font-weight: 600;
-  letter-spacing: 1px;
   margin: 0;
-  font-size: 1.2em;
-  padding: 11px;
+  font-size: 14px;
+  padding: 5px;
 }
 
 .month-picker__year input {
@@ -246,56 +245,70 @@ export default {
 .month-picker__year button {
   background-color: #FFFFFF;
   position: absolute;
-  width: 2em;
-  font-size: 1.2em;
+  width: 1em;
+  font-size: 1.7em;
   border-radius: 5px;
   outline: none;
   border: 0;
-  top: 0.5em;
-  border: 1px solid #E8E8E8;
+  top: 46%;
+  /* border: 1px solid #E8E8E8; */
   z-index: 2;
-  color: #686868;
+  color: #ABB1C1;
 }
 
 .month-picker__year button:hover {
-  background-color: rgba(0, 0, 0, 0.025);
+  /* background-color: rgba(0, 0, 0, 0.025); */
+  color:#2B59C3;
 }
 
 .month-picker__year button:active {
-  background-color: rgba(0, 0, 0, 0.04);
+  /* background-color: rgba(0, 0, 0, 0.04); */
+  color:#2B59C3;
 }
 
 .month-picker__year button:first-child {
-  left: 10px;
+  left: 0px;
 }
 
 .month-picker__year button:last-child {
-  right: 10px;
+  right: 0px;
 }
-
+.month-picker__year::after {
+    content: '';
+    border-bottom: 2px solid #676767;
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-bottom: 7px;
+}
 .month-picker__month {
   flex-basis: calc(33.333%);
-  padding: 0.5em 0.15em;
+  padding: 0.2em 0.15em;
   cursor: pointer;
   text-align: center;
-  border: 1px solid rgba(245, 245, 245, .75);
+  /* border: 1px solid rgba(245, 245, 245, .75); */
   transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  background-color: #FEFEFE;
+  /* background-color: #FEFEFE; */
 }
 
 .month-picker .month-picker__month:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   z-index: 10;
 }
-
+.mon-btn {
+    font-size: 12px;
+    padding: 2px 0px;
+}
 .month-picker__month.selected {
+  /* background-color: #2b59c3;
+  color: #FFFFFF;
+  border-radius: 55px; */
+}
+.month-picker__month.selected .mon-btn{
   background-color: #2b59c3;
   color: #FFFFFF;
-  border-radius: 5px;
-  box-shadow: inset 0 0 3px #3490d2, 0px 2px 5px rgba(85, 176, 242, 0.2);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 55px;
 }
-
 .month-picker__month.inactive {
   background-color: #f0f0f0;
   color: #8a8a8a;
