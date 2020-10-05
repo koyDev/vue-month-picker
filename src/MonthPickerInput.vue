@@ -6,7 +6,7 @@
   <i class="far fa-calendar-alt"></i>
     <input
       v-model="selectedDate"
-      class="month-picker-input form-control"
+      class="month-picker-input form-control simple"
       type="text"
       readonly
       @click="showMonthPicker()"
@@ -67,6 +67,13 @@ export default {
     return {
       monthPickerVisible: false,
       selectedDate: null
+    }
+  },
+  watch: {
+    defaultMonth(v, ov) {
+      if(v) {
+        this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
+      }
     }
   },
   mounted() {
