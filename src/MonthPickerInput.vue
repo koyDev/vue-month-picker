@@ -27,6 +27,7 @@
       :year-only="yearOnly"
       @input="populateInput"
       @change="$emit('change', $event)"
+      :step="step"
     />
   </div>
 </template>
@@ -63,6 +64,12 @@ export default {
     'change',
     'input'
   ],
+  props:{
+    step: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       monthPickerVisible: false,
