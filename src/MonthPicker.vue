@@ -6,50 +6,113 @@
       'year-picker': yearOnly
     }"
   >
-    <div
-      v-if="showYear"
-      class="month-picker__year"
-    >
-      <button
-        type="button"
-        @click="changeYear(-1)"
-      >
-        <i class="fas fa-caret-left"></i>
-      </button>
-      <p
-        v-if="!editableYear"
-      >
-        {{ year }}
-      </p>
-      <input
-        v-else
-        v-model.number="year"
-        type="text"
-        @change="onChange()"
-      >
-      <button
-        type="button"
-        @click="changeYear(+1)"
-      >
-        <i class="fas fa-caret-right"></i>
-      </button>
-    </div>
-    <div
-      v-if="!yearOnly"
-      class="month-picker"
-    >
+    <div v-if="!step" class="normal">
       <div
-        v-for="(month, i) in monthsByLang"
-        :key="month"
-        :class="{
-          'inactive': isInactive(month),
-          'clearable': clearable,
-          'selected': currentMonth === month
-        }"
-        class="month-picker__month"
-        @click="selectMonth(i, true)"
+        v-if="showYear"
+        class="month-picker__year"
       >
-        <div class="mon-btn">{{ month }}</div>
+        <div class="" v-for=""> 
+          <button
+            type="button"
+            @click="changeYear(-1)"
+          >
+            <i class="fas fa-caret-left"></i>
+          </button>
+          <p
+            v-if="!editableYear"
+          >
+            {{ year }}
+          </p>
+          <input
+            v-else
+            v-model.number="year"
+            type="text"
+            @change="onChange()"
+          >
+          <button
+            type="button"
+            @click="changeYear(+1)"
+          >
+            <i class="fas fa-caret-right"></i>
+          </button>
+        </div>
+      </div>
+      <div
+        v-if="!yearOnly"
+        class="month-picker"
+        :class="{'visable': next}"
+      >
+        <div
+          v-for="(month, i) in monthsByLang"
+          :key="month"
+          :class="{
+            'inactive': isInactive(month),
+            'clearable': clearable,
+            'selected': currentMonth === month
+          }"
+          class="month-picker__month"
+          @click="selectMonth(i, true)"
+        >
+          <div class="mon-btn">{{ month }}</div>
+        </div>
+      </div>
+    </div>
+    <!-- step style  -->
+    <div v-else class="step">
+      <div class="cpnewpick">
+        <div
+          class="year-part"
+          :class="{'visable': !next, 'invisable' : next}"
+        >
+        <p class="mb-0 text-center">{{ year }}</p>
+          <div class="month-picker__year new">
+            <button
+              type="button"
+              @click="changeYear(-1)"
+            >
+              <i class="fas fa-caret-left"></i>
+            </button>
+            <p
+              v-if="!editableYear"
+              v-for="year in yearRange"
+              @click="selectYear"
+            >
+              {{ year }}
+            </p>
+            <input
+              v-else
+              v-model.number="year"
+              type="text"
+              @change="onChange()"
+            >
+            <button
+              type="button"
+              @click="changeYear(+1)"
+            >
+              <i class="fas fa-caret-right"></i>
+            </button>
+          </div>
+        </div>
+        <div
+          v-if="!yearOnly"
+          class="month-picker"
+          :class="{'visable': next, 'invisable' : !next}"
+        >
+          <p class="mb-0 text-center">{{ year }}</p>
+          <div
+            v-for="(month, i) in monthsByLang"
+            :key="month"
+            :class="{
+              'inactive': isInactive(month),
+              'clearable': clearable,
+              'selected': currentMonth === month
+            }"
+            class="month-picker__month"
+            @click="selectMonth(i, true)"
+          >
+            <div class="mon-btn">{{ month }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,9 +131,18 @@ export default {
     'input',
     'change-year'
   ],
+  props: {
+    step: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => ({
     currentMonthIndex: null,
-    year: new Date().getFullYear()
+    year: new Date().getFullYear(),
+    initYear: new Date().getFullYear(),
+    selectedYear: '',
+    next: false
   }),
   computed: {
     currentMonth: function() {
@@ -92,6 +164,9 @@ export default {
         monthIndex: month,
         year: year
       }
+    },
+    yearRange() {
+     return Array.apply(0, Array(20)).map((element, index) => index + this.initYear - 10)
     }
   },
   watch: {
@@ -114,6 +189,11 @@ export default {
     }
   },
   methods: {
+    selectYear(e) {
+      this.year = e.target.outerText
+      this.$emit('change-year', e.target.outerText)
+      this.next = true
+    },
     onChange() {
       if (!Number.parseInt(this.year)) {
         this.year = this.defaultYear || new Date().getFullYear()
@@ -122,10 +202,10 @@ export default {
       this.$emit('change', this.date)
     },
     selectMonth(index, input = false) {
+      this.next = false
       if (this.isInactive(index)) {
         return
       }
-
       const isAlreadySelected = this.currentMonthIndex === index
       if (this.clearable && isAlreadySelected) {
         this.currentMonthIndex = null
@@ -145,13 +225,14 @@ export default {
       }
     },
     changeYear(value) {
-      this.year += value
+      this.initYear += value
       if (this.isInactive(0)) {
         return
       }
 
       this.onChange()
       this.$emit('change-year', this.year)
+      console.log(this.year)
     },
     isInactive(month) {
       let monthValue = month
@@ -181,7 +262,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .month-picker__container {
   width: 270px;
   position: relative;
@@ -212,7 +293,7 @@ export default {
   font-weight: 600;
   margin: 0;
   font-size: 14px;
-  padding: 5px;
+  padding: 1px 3px;
 }
 
 .month-picker__year input {
@@ -250,9 +331,10 @@ export default {
   border-radius: 5px;
   outline: none;
   border: 0;
-  top: 46%;
+  top: 50%;
   /* border: 1px solid #E8E8E8; */
   z-index: 2;
+  transform: translateY(-50%);
   color: #ABB1C1;
 }
 
@@ -273,7 +355,7 @@ export default {
 .month-picker__year button:last-child {
   right: 0px;
 }
-.month-picker__year::after {
+.normal .month-picker__year::after {
     content: '';
     border-bottom: 2px solid #676767;
     width: 80%;
@@ -378,6 +460,55 @@ export default {
 @media only screen and (max-width: 768px) {
   .month-picker__container {
     width: 100%;
+  }
+}
+
+.cpnewpick{
+  .mb-0.text-center{
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 2px solid #c9c9c9;
+    padding-bottom: 2px;
+    width: 100%;
+    font-family: sans-serif;
+  }
+  .month-picker__year.new {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .month-picker__year.new p {
+    width: 25%;
+    flex:unset;
+    cursor: pointer;
+    font-size:12px;
+    &:hover{
+      background: #e6e6e6;
+    }
+  }
+  .invisable{
+    opacity: 0;
+    display: none !important;
+  }
+  .visable{
+    opacity: 1;
+    display: block;
+  }
+  .year-part{
+    padding:10px 20px;
+  }
+  .month-picker {
+    box-sizing: border-box;
+    flex: 1;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 100%;
+    align-content: space-between;
+    padding:10px 20px;
   }
 }
 </style>
