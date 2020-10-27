@@ -297,7 +297,7 @@ export default {
   font-weight: 600;
   margin: 0;
   font-size: 14px;
-  padding: 1px 3px;
+  padding: 2px 3px;
 }
 
 .month-picker__year input {
@@ -328,7 +328,7 @@ export default {
 }
 
 .month-picker__year button {
-  background-color: #FFFFFF;
+  background-color: transparent;
   position: absolute;
   width: 1em;
   font-size: 1.7em;
@@ -471,22 +471,26 @@ export default {
   .mb-0.text-center{
     font-size: 12px;
     font-weight: bold;
-    border-bottom: 2px solid #c9c9c9;
-    padding-bottom: 2px;
+    border-bottom: 1px solid #707070;
+    padding-bottom: 5px;
     width: 100%;
-    font-family: sans-serif;
+    color:#333;
   }
   .month-picker__year.new {
     display: flex;
     flex-wrap: wrap;
+    padding-top:5px;
   }
   .month-picker__year.new p {
     width: 25%;
     flex:unset;
-    cursor: pointer;
     font-size:12px;
+    color:#333;
+    cursor: pointer;
+    border-radius: 9px;
     &:hover{
-      background: #e6e6e6;
+      background: #2B59C3;
+      color: #fff;
     }
   }
   .invisable{
@@ -498,7 +502,7 @@ export default {
     display: block;
   }
   .year-part{
-    padding:10px 20px;
+    padding:4px 20px;
   }
   .month-picker {
     box-sizing: border-box;
@@ -512,7 +516,7 @@ export default {
     overflow: hidden;
     height: 100%;
     align-content: space-between;
-    padding:10px 20px;
+    padding:4px 20px;
   }
 }
 </style>
