@@ -225,7 +225,11 @@ export default {
       }
     },
     changeYear(value) {
-      this.initYear += value
+      if (this.step) {
+        this.initYear += value
+      } else {
+        this.year += value
+      }
       if (this.isInactive(0)) {
         return
       }
