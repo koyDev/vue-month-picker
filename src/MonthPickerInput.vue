@@ -56,9 +56,6 @@ export default {
   components: {
 		MonthPicker
 	},
-  components: {
-    MonthPicker
-  },
   mixins: [monthPicker],
   emits: [
     'change',
@@ -67,26 +64,36 @@ export default {
   props:{
     step: {
       type: Boolean,
-      default: false
+      default: false,
+    },
+    defaultYear: {
+      type: [Number, String],
+      default: ''
+    },
+    defaultMonth: {
+      type: [Number, String],
+      default: ''
     }
   },
   data() {
     return {
       monthPickerVisible: false,
-      selectedDate: null
+      selectedDate: ''
     }
   },
   watch: {
     defaultMonth(v, ov) {
-      if(v) {
+      if(v !== '') {
         this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
+      } else {
+        this.selectedDate = ''
       }
     }
   },
   mounted() {
-    if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {
-      this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
-    }
+    // if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {
+    //   this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
+    // }
   },
   methods: {
     populateInput(date) {

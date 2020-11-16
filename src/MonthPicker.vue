@@ -135,6 +135,14 @@ export default {
     step: {
       type: Boolean,
       default: false
+    },
+    defaultMonth: {
+      type: [Number, String],
+      default: 0
+    },
+    defaultYear: {
+      type: [Number, String],
+      default: 0
     }
   },
   data: () => ({
@@ -177,13 +185,13 @@ export default {
       this.year = newVal
     }
   },
-  mounted() {
+  async mounted() {
     if (this.defaultYear) {
-      this.year = this.defaultYear
+      this.year = await this.defaultYear
     }
 
     if (this.defaultMonth) {
-      this.selectMonth(this.defaultMonth - 1)
+      await this.selectMonth(this.defaultMonth - 1)
     } else if (!this.noDefault) {
       this.selectMonth(0)
     }
