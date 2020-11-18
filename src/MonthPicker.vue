@@ -73,18 +73,25 @@
               <i class="fas fa-caret-left"></i>
             </button>
             <p
-              v-if="!editableYear"
+              v-if="!editableYear && !yearOnly"
               v-for="year in yearRange"
               @click="selectYear"
             >
               {{ year }}
             </p>
-            <input
+            <p
+              v-if="!editableYear && yearOnly"
+              v-for="year in yearRange"
+              @click="selectYearOnly"
+            >
+              {{ year }}
+            </p>
+            <!-- <input
               v-else
               v-model.number="year"
               type="text"
               @change="onChange()"
-            >
+            > -->
             <button
               type="button"
               @click="changeYear(+1)"
@@ -143,6 +150,10 @@ export default {
     defaultYear: {
       type: [Number, String],
       default: 0
+    },
+    yearOnly: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
@@ -197,6 +208,10 @@ export default {
     }
   },
   methods: {
+    selectYearOnly(e) {
+      this.year = e.target.outerText
+      this.$emit('input', this.year)
+    },
     selectYear(e) {
       this.year = e.target.outerText
       this.$emit('change-year', e.target.outerText)

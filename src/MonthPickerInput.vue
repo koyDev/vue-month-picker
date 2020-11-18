@@ -9,6 +9,8 @@
       class="month-picker-input form-control simple"
       type="text"
       readonly
+      :disabled="disabled"
+      :placeholder="placeholder"
       @click="showMonthPicker()"
     >
     <month-picker
@@ -73,6 +75,18 @@ export default {
     defaultMonth: {
       type: [Number, String],
       default: ''
+    },
+    yearOnly: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {
@@ -83,23 +97,33 @@ export default {
   },
   watch: {
     defaultMonth(v, ov) {
-      if(v !== '') {
+      if(v !== '' || v !== 0) {
         this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
       } else {
         this.selectedDate = ''
       }
     }
+    
   },
   mounted() {
     // if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {
     //   this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
     // }
+    if (this.yearOnly) {
+      this.selectedDate = this.defaultYear
+    }
   },
   methods: {
     populateInput(date) {
-      this.selectedDate = `${date.month}, ${date.year}`
-      this.monthPickerVisible = false
-      this.$emit("input", date)
+      if (typeof(date) === 'string') {
+        this.selectedDate = date
+        this.$emit("input", date)
+        this.monthPickerVisible = false
+      } else {
+        this.selectedDate = `${date.month}, ${date.year}`
+        this.monthPickerVisible = false
+        this.$emit("input", date)
+      }
     },
     showMonthPicker() {
       this.monthPickerVisible = !this.monthPickerVisible
@@ -110,11 +134,14 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
   .month-picker-input-container {
     position: relative;
-    width: 180px;
-    min-width: 140px;
+    width: auto;
+    min-width: 150px;
+  }
+  .month-picker-input-container.disabled {
+    opacity: .4;
   }
 
   .month-picker-input {
@@ -140,7 +167,7 @@ export default {
   i.far.fa-calendar-alt {
     position: absolute;
     right: 10%;
-    top: 30%;
+    top: 20%;
     font-size: 20px;
     color: #2b59c3;
   }
