@@ -102,15 +102,18 @@ export default {
       } else {
         this.selectedDate = ''
       }
+    },
+    defaultYear(v, ov) {
+      if (v && this.defaultMonth === '') {
+        this.selectedDate = this.defaultYear
+      }
     }
-    
   },
-  mounted() {
-    // if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {
-    //   this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
-    // }
+  async mounted() {
     if (this.yearOnly) {
-      this.selectedDate = this.defaultYear
+      const x = await this.defaultYear
+      console.log(x)
+      this.selectedDate = x.toString()
     }
   },
   methods: {
