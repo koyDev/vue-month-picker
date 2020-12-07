@@ -112,7 +112,6 @@ export default {
   async mounted() {
     if (this.yearOnly) {
       const x = await this.defaultYear
-      console.log(x)
       this.selectedDate = x.toString()
     }
   },
