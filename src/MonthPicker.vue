@@ -5,7 +5,7 @@
       [`month-picker--${variant}`]: true,
       'year-picker': yearOnly
     }"
-  >
+  > 
     <div v-if="!step" class="normal">
       <div
         v-if="showYear"

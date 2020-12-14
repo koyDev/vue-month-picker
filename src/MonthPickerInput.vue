@@ -140,7 +140,6 @@ export default {
   .month-picker-input-container {
     position: relative;
     width: auto;
-    min-width: 150px;
   }
   .month-picker-input-container.disabled {
     opacity: .4;
@@ -152,7 +151,7 @@ export default {
     outline: none;
     border: 0;
     transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
-    width: inherit;
+    width: 100%;
     border-bottom: 1px solid #b1b1b1;
   }
 
@@ -168,7 +167,7 @@ export default {
   }
   i.far.fa-calendar-alt {
     position: absolute;
-    right: 10%;
+    right: 0%;
     top: 20%;
     font-size: 20px;
     color: #2b59c3;
