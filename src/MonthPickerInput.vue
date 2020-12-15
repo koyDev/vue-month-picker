@@ -30,6 +30,7 @@
       @input="populateInput"
       @change="$emit('change', $event)"
       :step="step"
+      :style="alignment"
     />
   </div>
 </template>
@@ -87,6 +88,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false,
+    },
+    position: {
+      type: String,
+      default: 'center'
     }
   },
   data() {
@@ -113,6 +118,21 @@ export default {
     if (this.yearOnly) {
       const x = await this.defaultYear
       this.selectedDate = x.toString()
+    }
+  },
+  computed: {
+    alignment() {
+      let positonStyle = this.position
+      if (this.position == 'left') {
+        return { left: 0 + '%' }
+      } else if (this.position == 'right') {
+        return { right: 0 + '%' }
+      } else {
+        return {
+          left: 50 + '%',
+          transform: 'translateX(' + -50 + '%)' 
+        }
+      }
     }
   },
   methods: {
@@ -163,7 +183,6 @@ export default {
   .month-picker__container {
     position: absolute;
     top: 3.5em;
-    right:-40%;
   }
   i.far.fa-calendar-alt {
     position: absolute;
