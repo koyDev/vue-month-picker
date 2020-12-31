@@ -3,7 +3,7 @@
     v-click-outside="hide"
     class="month-picker-input-container"
   >
-  <i class="far fa-calendar-alt"></i>
+  <i class="far fa-calendar-alt" @click="showMonthPicker()"></i>
     <input
       v-model="selectedDate"
       class="month-picker-input form-control simple"

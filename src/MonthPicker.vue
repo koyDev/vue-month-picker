@@ -296,6 +296,7 @@ export default {
   border: 1px solid #DDDDDD;
   border-radius: 5px;
   z-index: 5;
+  box-shadow: 0px 3px 6px #00000029;
 }
 
 .month-picker__container.year-picker {
