@@ -118,8 +118,6 @@ export default {
     if (this.yearOnly) {
       const x = await this.defaultYear
       this.selectedDate = x.toString()
-<<<<<<< HEAD
-=======
     }
   },
   computed: {
@@ -135,7 +133,6 @@ export default {
           transform: 'translateX(' + -50 + '%)' 
         }
       }
->>>>>>> 0af098c8c57bb0eac082dac165cb7df3aacad316
     }
   },
   methods: {
