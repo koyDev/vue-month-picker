@@ -3,7 +3,7 @@
     v-click-outside="hide"
     class="month-picker-input-container"
   >
-  <i class="far fa-calendar-alt"></i>
+  <i class="far fa-calendar-alt" @click="showMonthPicker()"></i>
     <input
       v-model="selectedDate"
       class="month-picker-input form-control simple"
@@ -30,6 +30,7 @@
       @input="populateInput"
       @change="$emit('change', $event)"
       :step="step"
+      :style="alignment"
     />
   </div>
 </template>
@@ -87,6 +88,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false,
+    },
+    position: {
+      type: String,
+      default: 'center'
     }
   },
   data() {
@@ -113,6 +118,24 @@ export default {
     if (this.yearOnly) {
       const x = await this.defaultYear
       this.selectedDate = x.toString()
+<<<<<<< HEAD
+=======
+    }
+  },
+  computed: {
+    alignment() {
+      let positonStyle = this.position
+      if (this.position == 'left') {
+        return { left: 0 + '%' }
+      } else if (this.position == 'right') {
+        return { right: 0 + '%' }
+      } else {
+        return {
+          left: 50 + '%',
+          transform: 'translateX(' + -50 + '%)' 
+        }
+      }
+>>>>>>> 0af098c8c57bb0eac082dac165cb7df3aacad316
     }
   },
   methods: {
@@ -140,7 +163,6 @@ export default {
   .month-picker-input-container {
     position: relative;
     width: auto;
-    min-width: 150px;
   }
   .month-picker-input-container.disabled {
     opacity: .4;
@@ -152,7 +174,7 @@ export default {
     outline: none;
     border: 0;
     transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
-    width: inherit;
+    width: 100%;
     border-bottom: 1px solid #b1b1b1;
   }
 
@@ -164,11 +186,10 @@ export default {
   .month-picker__container {
     position: absolute;
     top: 3.5em;
-    right:-40%;
   }
   i.far.fa-calendar-alt {
     position: absolute;
-    right: 10%;
+    right: 0%;
     top: 20%;
     font-size: 20px;
     color: #2b59c3;
