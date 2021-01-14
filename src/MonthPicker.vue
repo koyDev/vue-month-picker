@@ -292,7 +292,7 @@ export default {
 <style lang="scss">
 .month-picker__container {
   width: 270px;
-  position: relative;
+  position: absolute;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
   z-index: 5;
