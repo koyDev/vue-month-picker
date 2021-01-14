@@ -352,7 +352,7 @@ export default {
 
 .month-picker__year button {
   background-color: transparent;
-  position: absolute;
+  position: absolute !important;
   width: 1em;
   font-size: 1.7em;
   border-radius: 5px;
