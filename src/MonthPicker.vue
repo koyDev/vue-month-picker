@@ -487,7 +487,7 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .month-picker__container {
-    width: 100%;
+    // width: 100%;
   }
 }
 
