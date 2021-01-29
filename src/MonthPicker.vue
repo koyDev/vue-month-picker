@@ -209,12 +209,12 @@ export default {
   },
   methods: {
     selectYearOnly(e) {
-      this.year = e.target.outerText
+      this.year = e.target.innerText
       this.$emit('input', this.year)
     },
     selectYear(e) {
-      this.year = e.target.outerText
-      this.$emit('change-year', e.target.outerText)
+      this.year = e.target.innerText
+      this.$emit('change-year', e.target.innerText)
       this.next = true
     },
     onChange() {
